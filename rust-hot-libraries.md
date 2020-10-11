@@ -15,6 +15,16 @@ Rust 异步Web 框架 Actix-web（包括 Actor 框架 Actix）
 https://www.rectcircle.cn/posts/rust-actix/  
 
 
+### Tokio
+Tokio是一个事件驱动的非阻塞I / O平台，用于使用Rust编程语言编写异步应用程序。在较高的层面上，它提供了一些主要组件：
+
+基于多线程，工作窃取的任务调度程序。
+由操作系统的事件队列（epoll，kqueue，IOCP等）支持的反应器。
+异步TCP和UDP套接字。
+这些组件提供构建异步应用程序所需的运行时组件。
+
+https://tokio-zh.github.io/document/  
+
 
 ### serde
 Like clap, serde is a feature rich and performant generic serialization library. In fact, thinking about Java and .NET, I don’t remember a serialization library that was this well made from all aspects — ergonomics and performance.  
