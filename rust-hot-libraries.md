@@ -23,8 +23,8 @@ Tokio是一个事件驱动的非阻塞I / O平台，用于使用Rust编程语言
 异步TCP和UDP套接字。
 这些组件提供构建异步应用程序所需的运行时组件。
 
-https://tokio-zh.github.io/document/  
-
+https://tokio-zh.github.io/document/   
+https://zhuanlan.zhihu.com/p/104098627  
 
 ### serde
 Like clap, serde is a feature rich and performant generic serialization library. In fact, thinking about Java and .NET, I don’t remember a serialization library that was this well made from all aspects — ergonomics and performance.  
