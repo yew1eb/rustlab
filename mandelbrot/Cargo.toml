@@ -1,5 +1,5 @@
 [package]
-name = "learn_async"
+name = "mandelbrot"
 version = "0.1.0"
 authors = ["zhouhai <yew1eb@gmail.com>"]
 edition = "2018"
@@ -7,4 +7,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-futures = {version ="0.3.4"}
+num = "0.1.34"
+image = "0.13.0"
+crossbeam = "0.2.8"
+atomic_chunks_mut = { git = "https://github.com/jimblandy/atomic-chunks-mut.git" }
+rayon = "0.4.0"
