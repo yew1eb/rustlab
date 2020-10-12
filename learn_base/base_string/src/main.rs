@@ -51,5 +51,16 @@ fn main() {
     }
 
 
+    let country = return_str();//ERROR:  this function's return type contains a borrowed value, but there is no value for it to be borrowed from
 
+}
+
+
+//the function return the reference. But the String country only lives inside the function, and then it dies.
+//Once a variable is gone, the computer will clean up the memory and use it for something else. 
+//So after the function is over, country_ref is referring to memory that is already gone.
+fn return_str() -> &str {
+    let country = String::from("SA");
+    let country_ref = &country;
+    country_ref
 }

@@ -100,6 +100,8 @@ A safe, extensible ORM and Query Builder for Rust
 
 https://github.com/diesel-rs/diesel
 
+Rust ORM 框架 Diesel 文档：<https://www.rectcircle.cn/posts/rust-diesel/>
+
 
 ### kafka client
 
