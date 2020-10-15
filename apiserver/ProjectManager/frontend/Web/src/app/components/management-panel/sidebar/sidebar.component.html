@@ -1,0 +1,49 @@
+<div id="sidebar">
+    <div class="logo">
+        <a [routerLink]="['/']">
+            <img src="/assets/logo/logo.png" alt="Logo" />
+        </a>
+    </div>
+    <div class="nav">
+        <a [routerLink]="['/']">
+            <div class="dashboard icon icon-active" [ngClass]="{'icon-inactive': router.url !== '/dashboard'}">
+                <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3>
+                Navigation
+            </h3>
+        </a>
+        <ul>
+            <li class="icon">
+                <a [routerLink]="['/projects']" [ngClass]="{'nav-active': router.url.startsWith('/project')}">
+                    <div>
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <span>
+                        Projekte
+                    </span>
+                </a>
+            </li>
+            <!--<li class="icon" (click)="test($event)">
+                <a [routerLink]="['/tasks']">
+                    <div>
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <span>
+                        Aufgaben
+                    </span>
+                </a>
+            </li>
+            <li class="icon">
+                <a [routerLink]="['/teams']">
+                    <div>
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <span>
+                        Teams
+                    </span>
+                </a>
+            </li>-->
+        </ul>
+    </div>
+</div>
