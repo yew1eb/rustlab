@@ -11,7 +11,6 @@ extern crate failure;
 extern crate toml;
 use failure::Error;
 
-
 use std::env;
 use std::fs;
 use std::process::exit;
@@ -34,5 +33,7 @@ fn main() -> Result<(), Error> {
 
     let server = server::Server::new(&config)?;
 
-    exit(server.start());
+    server.start();
+
+    Ok(())
 }

@@ -1,15 +1,28 @@
 use crate::config::Config;
 use failure::Error;
 
-pub struct Server {}
+use actix::prelude::*;
+use actix::SystemRunner;
+use actix_web::{get, web, App, HttpServer, Responder};
+
+
+pub struct Server {
+    runner: SystemRunner,
+}
 
 impl Server {
     pub fn new(config: &Config) -> Result<Self, Error> {
-        Ok(Server {})
+        let runner = actix::System::new("apiserver");
+
+        HttpServer::new(move || app()).bind(config.server.port)?.start();
+
+        Ok(Server { runner })
     }
 
-    pub fn start(self) -> i32 {
+    pub fn start(self) {
         println!("start server...");
-        0
+        self.runner.run();
     }
 }
+
+fn app() {}

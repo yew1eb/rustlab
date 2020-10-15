@@ -1,4 +1,6 @@
-使用Rust开发完整的REST API
+# 使用Rust开发完整的REST API
+
+https://zhuanlan.zhihu.com/p/107049817
 
 ## 使用到的第三方库
 actix-web
