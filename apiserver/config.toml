@@ -1,0 +1,13 @@
+[server]
+port = "8891"
+
+
+[log]
+actix_web = "debug"
+webapp = "trace"
+
+[db]
+host = ""
+username = ""
+password = ""
+database = ""
