@@ -1,3 +1,4 @@
+use actix_web::web;
 use r2d2;
 use r2d2_sqlite::SqliteConnectionManager;
 
@@ -9,3 +10,4 @@ pub fn create_db_pool(db_url: &str) -> Pool {
     let pool = r2d2::Pool::new(manager).unwrap();
     pool
 }
+

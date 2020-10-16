@@ -1,5 +1,8 @@
 mod config;
 mod db;
+mod urls;
+mod handlers;
+mod models;
 
 #[macro_use]
 extern crate serde_derive;
@@ -23,19 +26,6 @@ use std::sync::Mutex;
 
 use actix_web::{middleware, get, App, HttpRequest, HttpResponse, HttpServer, Responder};
 use actix_web::web::ServiceConfig;
-
-// curl http://localhost:8080/
-async fn index() -> impl Responder {
-    HttpResponse::Ok().body("Hello World!")
-}
-
-
-// curl http://localhost:8080/hello
-// 使用宏解析
-#[get("/hello")]
-async fn index3() -> impl Responder {
-    HttpResponse::Ok().body("Hey there!")
-}
 //actix web 使用文档： https://www.rectcircle.cn/posts/rust-actix/
 
 #[actix_web::main]
@@ -66,7 +56,7 @@ async fn main() -> io::Result<()> {
             // set up DB pool to be used with web::Data<Pool> extractor
             .data(pool.clone())
             .wrap(middleware::Logger::default())
-            .configure()
+            .configure(url_config)
 
     })
     .bind(&bind)?
@@ -74,18 +64,3 @@ async fn main() -> io::Result<()> {
     .await
 }
 
-
-pub fn config(cfg: &mut ServiceConfig) {
-    .route("/", web::get().to(index))
-    .service(index3)
-    cfg
-        .service(
-            scope("/api/v1")
-                .service(r("/user/{user_id}").route(get().to(get_user)))
-                .service(r("/user").route(post().to(add_user)))
-                .service(r("/users").route(get().to(get_users)))
-        )
-        .service(scope("/api/v2")
-            .service(r("/user/{user_id}").route(get().to(get_user)))
-        );
-}
