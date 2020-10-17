@@ -7,7 +7,4 @@ actix_web = "debug"
 webapp = "trace"
 
 [db]
-host = ""
-username = ""
-password = ""
-database = ""
+url = "mysql://root:root@127.0.0.1:3306/test_db"

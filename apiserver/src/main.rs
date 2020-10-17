@@ -9,12 +9,12 @@ extern crate serde_json;
 mod config;
 mod dao;
 mod db;
+mod errors;
 mod handlers;
+mod helpers;
 mod models;
 mod schema;
 mod urls;
-mod errors;
-mod helpers;
 
 extern crate env_logger;
 extern crate log;
@@ -22,13 +22,13 @@ extern crate log;
 extern crate failure;
 extern crate toml;
 
-use actix_web::{middleware, App, HttpServer};
+use actix_web::{get, middleware, web, App, HttpServer};
 use std::env;
 use std::fs;
 use std::io;
-//actix web 使用文档： https://www.rectcircle.cn/posts/rust-actix/
 
 use crate::urls::url_config;
+
 
 #[actix_web::main]
 async fn main() -> io::Result<()> {
@@ -45,7 +45,7 @@ async fn main() -> io::Result<()> {
     env_logger::init();
 
     //创建数据库连接池
-    let pool = db::create_db_pool(&config.db.host);
+    let pool = db::create_db_pool(&config.db.url);
 
     //启动http server
     let bind = "127.0.0.1:8080";

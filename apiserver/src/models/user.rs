@@ -17,7 +17,7 @@ pub struct User {
 
 // This represents a user being inserted into the database
 #[derive(Clone, Insertable, Serialize, Deserialize, Debug)]
-#[table_name = "users"]
+#[table_name = "user"]
 pub struct NewUser {
     pub id: i32,
     pub first_name: String,
@@ -28,7 +28,7 @@ pub struct NewUser {
 
 // This represents a user being updated into the database
 #[derive(Clone, AsChangeset, Serialize, Deserialize, Debug)]
-#[table_name = "users"]
+#[table_name = "user"]
 pub struct UpdateUser {
     pub id: i32,
     pub first_name: String,

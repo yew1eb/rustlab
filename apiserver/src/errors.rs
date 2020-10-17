@@ -1,8 +1,8 @@
 use actix_web::{
     error::{
-        BlockingError, ContentTypeError, JsonPayloadError, ParseError, PayloadError, ResponseError,
+        BlockingError, JsonPayloadError, ParseError, PayloadError, ResponseError,
     },
-    http::{self, StatusCode},
+    http::StatusCode,
     HttpResponse,
 };
 

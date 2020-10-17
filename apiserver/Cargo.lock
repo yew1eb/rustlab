@@ -334,6 +334,7 @@ dependencies = [
  "failure",
  "lazy_static",
  "log",
+ "mysqlclient-sys",
  "r2d2",
  "serde",
  "serde_derive",

@@ -21,11 +21,5 @@ pub struct LogConfig {
 
 #[derive(Debug, Clone, Default, Deserialize)]
 pub struct MysqlConfig {
-    pub host: String,
-
-    pub username: String,
-
-    pub password: String,
-
-    pub database: String,
+    pub url: String,
 }

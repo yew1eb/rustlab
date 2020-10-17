@@ -1,5 +1,5 @@
 table! {
-    users (id) {
+    user (id) {
         id -> Integer,
         first_name -> Varchar,
         last_name -> Varchar,
