@@ -54,6 +54,7 @@ https://www.dazhuanlan.com/2020/01/20/5e2504d9bd662
 https://doc.xuwenliang.com/docs/rust/1819
 https://medium.com/@saschagrunert/a-web-application-completely-in-rust-6f6bdb6c4471
 https://doc.xuwenliang.com/docs/rust/2588
+https://codeburst.io/how-to-build-a-rest-api-to-execute-system-commands-using-actix-rust-a-step-by-step-guide-e257d5442b16
 
 
 通过例子学 Rust http://llever.com/rust-by-example-cn/hello/comment.html
