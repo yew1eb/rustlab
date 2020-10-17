@@ -1,28 +1,17 @@
 use actix_web::{web, HttpResponse};
-use failure::Error;
 
-
-use crate::db::Pool;
-use crate::models::User;
+use crate::dao;
+use crate::errors::ServiceError;
+use crate::{db::Pool, helpers::respond_json};
 
 pub async fn get_user(
     pool: web::Data<Pool>,
-    user: web::Path<i64>,
-) -> Result<HttpResponse, Error>{
+    user: web::Path<i32>,
+) -> Result<HttpResponse, ServiceError> {
     let user_id = user.into_inner();
-    let conn = pool.get().unwrap();
-    
-    let uuid = format!("{}", uuid::Uuid:new_v4());
-    conn.execute(
-        "INSERT INTO user (id, name) VALUES ($1, $2)",
-        &[&uuid, &user_id.to_string()],
-    )
-    .unwrap();
 
+    // use web::block to offload blocking Diesel code without blocking server thread
+    let user = web::block(move || dao::find_user_by_user_id(&pool, user_id)).await?;
 
-    let user = conn.query_row("SELECT name FROM user WHERE id=$1", &[&uuid], |row| {
-        row.get::<_, String>(0)
-    })?;
-
-    Ok(HttpResponse::Ok().json(user))
+    respond_json(user)
 }

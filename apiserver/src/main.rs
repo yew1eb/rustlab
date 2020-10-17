@@ -1,32 +1,34 @@
-mod config;
-mod db;
-mod urls;
-mod handlers;
-mod models;
-
+extern crate chrono;
+#[macro_use]
+extern crate diesel;
 #[macro_use]
 extern crate serde_derive;
+extern crate serde;
+extern crate serde_json;
+
+mod config;
+mod dao;
+mod db;
+mod handlers;
+mod models;
+mod schema;
+mod urls;
+mod errors;
+mod helpers;
 
 extern crate env_logger;
 extern crate log;
 
 extern crate failure;
 extern crate toml;
-use failure::Error;
 
+use actix_web::{middleware, App, HttpServer};
 use std::env;
 use std::fs;
 use std::io;
-use std::process::exit;
-
-use std::cell::Cell;
-
-use std::sync::atomic::{AtomicUsize, Ordering};
-use std::sync::Mutex;
-
-use actix_web::{middleware, get, App, HttpRequest, HttpResponse, HttpServer, Responder};
-use actix_web::web::ServiceConfig;
 //actix web 使用文档： https://www.rectcircle.cn/posts/rust-actix/
+
+use crate::urls::url_config;
 
 #[actix_web::main]
 async fn main() -> io::Result<()> {
@@ -49,18 +51,14 @@ async fn main() -> io::Result<()> {
     let bind = "127.0.0.1:8080";
     println!("Starting server at: {}", &bind);
 
-    let serverConfig = ServiceConfig::new();
-
     HttpServer::new(move || {
         App::new()
             // set up DB pool to be used with web::Data<Pool> extractor
             .data(pool.clone())
             .wrap(middleware::Logger::default())
             .configure(url_config)
-
     })
     .bind(&bind)?
     .run()
     .await
 }
-
