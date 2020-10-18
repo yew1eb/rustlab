@@ -1,7 +1,0 @@
-[package]
-name = "binary-tree"
-version = "0.1.0"
-authors = ["You <you@example.com>"]
-
-[dependencies]
-rand = "0.3.14"

@@ -1,6 +1,0 @@
-[package]
-name = "copy"
-version = "0.1.0"
-authors = ["You <you@example.com>"]
-
-[dependencies]
