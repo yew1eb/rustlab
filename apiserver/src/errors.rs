@@ -15,7 +15,7 @@ use diesel::{
 };
 
 use derive_more::Display;
-
+#[allow(dead_code)]
 #[derive(Debug, Display, PartialEq)]
 pub enum ServiceError {
     InternalServerError(String),

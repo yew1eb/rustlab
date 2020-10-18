@@ -14,6 +14,7 @@ where
     Ok(HttpResponse::Ok().json(data))
 }
 
+#[allow(dead_code)]
 pub fn respond_ok() -> Result<HttpResponse, ServiceError> {
     Ok(HttpResponse::Ok().body(Body::Empty))
 }

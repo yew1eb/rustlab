@@ -22,7 +22,7 @@ extern crate log;
 extern crate failure;
 extern crate toml;
 
-use actix_web::{get, middleware, web, App, HttpServer};
+use actix_web::{middleware, App, HttpServer};
 use std::env;
 use std::fs;
 use std::io;
