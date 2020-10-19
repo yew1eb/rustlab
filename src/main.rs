@@ -5,6 +5,10 @@ mod string_base;
 mod struct_base;
 mod trait_base;
 mod fn_base;
+mod borrow_base;
+mod borrow_mut_base;
+mod lifetime_base;
+
 
 mod generic_bound;
 mod generic_bound_where;
