@@ -1,13 +1,5 @@
-struct Dog {
-    name: String,
-    weight: f32,
-    height: f32,
-}
-
 #[cfg(test)]
 mod test {
-    use super::*;
-
     #[test]
     fn struct_fn() {
         #[derive(Debug)]

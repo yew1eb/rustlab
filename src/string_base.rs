@@ -1,7 +1,5 @@
 #[cfg(test)]
 mod test {
-    use super::*;
-
     #[test]
     fn tmain() {
         let mut s0 = String::new();
