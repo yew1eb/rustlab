@@ -4,6 +4,12 @@ rust:
   - beta
   - stable
 
+
+before_script:
+  - rustup component add rustfmt-preview
+  - rustup component add clippy
 script:
+  #- cargo fmt --all -- --check  #
+  #- cargo clippy  # https://github.com/rust-lang/rust-clippy  #A collection of lints to catch common mistakes and improve your Rust code.
   - cargo build --all --verbose --workspace
   - cargo test -p basic-exercises --verbose --workspace

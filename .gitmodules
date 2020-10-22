@@ -1,3 +1,6 @@
 [submodule "vector"]
 	path = third-party/vector
 	url = git@github.com:yew1eb/vector.git
+[submodule "third-party/TheAlgorithms-Rust"]
+	path = third-party/TheAlgorithms-Rust
+	url = git@github.com:TheAlgorithms/Rust.git
