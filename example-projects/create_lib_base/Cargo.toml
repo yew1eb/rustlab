@@ -1,16 +1,11 @@
 [package]
-name = "rustlab"
-description = "A short description of my package"
+name = "base_crate"
 version = "0.1.0"
 authors = ["zhouhai <yew1eb@gmail.com>"]
 edition = "2018"
-license-file = "LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[workspace]
-members = [
-  "basics-exercises",
-]
-
 [dependencies]
+mylib = {path = "mylib"}
+rust-crypto = "0.2.36"
