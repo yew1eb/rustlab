@@ -5,5 +5,5 @@ rust:
   - stable
 
 script:
-  - cargo build --verbose --workspace
-  - cargo test --verbose --workspace
+  - cargo build --all --verbose --workspace
+  - cargo test -p basic-exercises --verbose --workspace

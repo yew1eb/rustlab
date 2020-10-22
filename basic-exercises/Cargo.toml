@@ -1,5 +1,5 @@
 [package]
-name = "basics-exercises"
+name = "basic-exercises"
 version = "0.1.0"
 authors = ["zhouhai <yew1eb@gmail.com>"]
 edition = "2018"
