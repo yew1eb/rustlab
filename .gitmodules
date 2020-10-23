@@ -4,3 +4,9 @@
 [submodule "third-party/TheAlgorithms-Rust"]
 	path = third-party/TheAlgorithms-Rust
 	url = git@github.com:TheAlgorithms/Rust.git
+[submodule "third-party/toydb"]
+	path = third-party/toydb
+	url = git@github.com:yew1eb/toydb.git
+[submodule "third-party/pingcap-talent-plan"]
+	path = third-party/pingcap-talent-plan
+	url = git@github.com:yew1eb/talent-plan.git
