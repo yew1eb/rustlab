@@ -15,3 +15,5 @@ rust example projects
 
 ## Third party
 study notes for third-party libraries source code
+
+> git submodule update --init --recursive
