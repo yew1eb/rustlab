@@ -13,3 +13,9 @@
 [submodule "third-party/vector"]
 	path = third-party/vector
 	url = git@github.com:yew1eb/vector.git
+[submodule "third-party/crossbeam"]
+	path = third-party/crossbeam
+	url = git@github.com:yew1eb/crossbeam.git
+[submodule "third-party/smol"]
+	path = third-party/smol
+	url = git@github.com:yew1eb/smol.git
