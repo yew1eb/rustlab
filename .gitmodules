@@ -1,12 +1,21 @@
-[submodule "vector"]
-	path = third-party/vector
-	url = git@github.com:yew1eb/vector.git
-[submodule "third-party/TheAlgorithms-Rust"]
-	path = third-party/TheAlgorithms-Rust
-	url = git@github.com:TheAlgorithms/Rust.git
+
 [submodule "third-party/toydb"]
 	path = third-party/toydb
 	url = git@github.com:yew1eb/toydb.git
 [submodule "third-party/pingcap-talent-plan"]
 	path = third-party/pingcap-talent-plan
 	url = git@github.com:yew1eb/talent-plan.git
+
+
+[submodule "third-party/TheAlgorithms-Rust"]
+	path = third-party/TheAlgorithms-Rust
+	url = git@github.com:TheAlgorithms/Rust.git
+[submodule "third-party/vector"]
+	path = third-party/vector
+	url = git@github.com:yew1eb/vector.git
+[submodule "third-party/crossbeam"]
+	path = third-party/crossbeam
+	url = git@github.com:yew1eb/crossbeam.git
+[submodule "third-party/smol"]
+	path = third-party/smol
+	url = git@github.com:yew1eb/smol.git
