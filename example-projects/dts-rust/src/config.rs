@@ -12,6 +12,10 @@ pub struct CliArgs {
 #[derive(Debug, Clone, Deserialize)]
 pub struct Config {
     pub log: LogConfig, 
+    pub kafkaConf: KafkaConfig,
+    pub ClickhouseConf: ClickhouseConfig,
+    
+
 }
 
 #[derive(Debug, Clone, Deserialize)]
