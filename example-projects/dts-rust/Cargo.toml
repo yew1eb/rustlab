@@ -32,16 +32,17 @@ rust-s3 = "0.18.11"
 
 # what could this be for...
 log = "0.4.8"
-simple_logger = "1.4.0"
+env_logger = "0.8.1"
 
 # config from parameters/env
 structopt = "0.3"
 toml = "0.5.7"
 
-# parsing and deparsing messages received via kafka
-serde = "1.0.104"
-serde_json = "1.0.48"
 
+# Serialization/Deserialization
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
 
 
 

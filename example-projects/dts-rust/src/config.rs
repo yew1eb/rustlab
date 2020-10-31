@@ -1,16 +1,24 @@
-use log::Level;
 use structopt::StructOpt;
-
-pub const CONFIG_FILENAME: &str = "config.toml";
-
-#[derive(Debug, Clone)]
-pub struct Config {
-    pub loglevel: String,
-}
+use serde_derive::Deserialize;
 
 
 #[derive(StructOpt, Debug, Clone)]
 pub struct CliArgs {
-    #[structopt(short, long, default_value = "info")]
-    pub log_level: Level,
+    #[structopt(short, long, default_value = "config.toml")]
+    pub cfgurl: String,
 }
+
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct Config {
+    pub log: LogConfig, 
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct LogConfig {
+    pub level: String,
+}
+
+
+
+
