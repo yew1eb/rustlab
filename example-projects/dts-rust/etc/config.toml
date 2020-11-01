@@ -1,0 +1,17 @@
+
+[log]
+level = "debug"
+
+[source]
+type = "kafka"
+
+
+[sink]
+type = "kafka"
+# kafka_brokers = [ "172.16.205.129:9092", "172.16.205.130:9092" ]
+# kafka_topic = "test"
+# kafka_threads = 1
+# kafka_coalesce = 1000
+# kafka_timeout = 60000
+# kafka_acks = 0
+# kafka_compression = "none"

@@ -1,13 +1,13 @@
 #[allow(dead_code)]
 #[warn(unused_imports)]
-pub mod config;
-pub mod kafka;
-pub mod timer_task;
+mod timer_task;
+pub mod hippo;
+
+use hippo::config::Config;
 
 use std::fs;
-use std::process::exit;
+use std::process;
 
-use config::CliArgs;
 use env_logger;
 use log::info;
 use std::env;
@@ -29,26 +29,40 @@ use futures::{
     StreamExt,
     TryStreamExt,
 };
+
+
+#[derive(StructOpt, Debug, Clone)]
+pub struct CliArgs {
+    //#[structopt(short, long, default_value = "etc/config.toml")]
+    #[structopt(short, long, default_value = "etc/dev_config.toml")]
+    pub cfgurl: String,
+}
+
+
 fn main() {
     // 读取命令行执行参数
-    let args = CliArgs::from_args();
-    println!("{:#?}", args);
+    let params = CliArgs::from_args();
+    println!("{:#?}", params);
 
-    if args.cfgurl.contains("toml") {
+    let mut optConfig: Option<Config> = None;
+     if params.cfgurl.contains("toml") {
         // 从本地读取配置
-        let config_string = fs::read_to_string(args.cfgurl).unwrap();
-        //let config = toml::from_str::<config::Config>(&config_string).unwrap();
-        let config = match toml::from_str::<config::Config>(&config_string) {
-            Ok(config) => config,
-            Err(err) => {
-                println!("toml file parse error: \n{:#?}", err);
-                exit(1);
-            }
+        let config_string = fs::read_to_string(&params.cfgurl).unwrap();
+        optConfig = match toml::from_str::<Config>(&config_string) {
+            Ok(cfg) => Some(cfg),
+            Err(error) => {
+                println!("ERROR: toml parse the file {}, error: {}", params.cfgurl, error);
+                process::abort();
+                None
+              }
         };
     } else {
         //从远端动态配置更新
         //TODO
     }
+    let mut config = optConfig.unwrap();
+    println!("{:#?}", &config);
+
 
     //TODO 配置自定义日志输出 https://rust-cookbook.budshome.com/development_tools/debugging.html
     env::set_var(
@@ -57,12 +71,14 @@ fn main() {
     );
     env_logger::init();
 
-    // Spawn a set of workers.
+    // Spawn a set of workers. TODO自定线程个数
     // This has to be in an async task to have access to the `tokio::spawn` primitive
     // 跟在async fn main 加 #[tokio::main]作用是一样的
     Runtime::new().unwrap().block_on(async {
-        kafka::receive_messages();
 
+        hippo::start(&config);
+
+        //启动定时任务
         tokio::spawn(timer_task::execute());
 
         
@@ -81,7 +97,7 @@ fn main() {
             select! {
                 _ = signals.select_next_some() => {
                     println!("shutting down...");
-                    exit(1);
+                    process::abort();
                 }
             }
         }
@@ -89,3 +105,5 @@ fn main() {
 
     println!("Main thread close.");
 }
+
+

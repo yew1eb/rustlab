@@ -10,12 +10,21 @@ use dotenv::dotenv;
 use kafka::consumer::{Consumer, FetchOffset, GroupOffsetStorage};
 use sqlx::postgres::PgPool;
 use serde_json::{Value};
+use structopt::StructOpt;
+use serde::{Deserialize, Serialize};
 
-pub async fn receive_messages() {
+
+use crate::config::Config;
+use std::sync::mpsc::SyncSender;
+pub async fn receive_messages(config: &Config) {
+
+    println!("kafka receive_messages");
+
+    /*
     let kafka_ip = &env::var("KAFKA_IP").context("`KAFKA_IP` must be set to run this consumer")?;
     let kafka_topic = &env::var("KAFKA_TOPIC").context("`KAFKA_TOPIC` must be set to run this consumer")?;
     
-    println!("kafka receive_messages");
+
 
     // 消费者群组如果没有环境变量则随机生成
     let consumer_group: String;
@@ -61,24 +70,65 @@ pub async fn receive_messages() {
             }
             consumer.commit_consumed().unwrap();
         }
+            */
 }
 
-async fn generate_sql(json_string: String) -> anyhow::Result<String> {
 
-    let v: Value = serde_json::from_str(&json_string)?;
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+pub struct KafkaSourceConfig {
+    bootstrap_servers: String,
+    topics: Vec<String>,
+    group_id: String,
 
-    let mut colums: Vec<String> = vec![];
-    let mut values: Vec<String> = vec![];
+    #[serde(default = "default_auto_offset_reset")]
+    auto_offset_reset: String,
+    #[serde(default = "default_session_timeout_ms")]
+    session_timeout_ms: u64,
+    #[serde(default = "default_socket_timeout_ms")]
+    socket_timeout_ms: u64,
+    #[serde(default = "default_fetch_wait_max_ms")]
+    fetch_wait_max_ms: u64,
+    #[serde(default = "default_commit_interval_ms")]
+    commit_interval_ms: u64,
+}
 
-    for (key, value) in v["data"].as_object().unwrap() {
-        colums.push(key.to_string());
-        values.push(value.to_string());
+fn default_session_timeout_ms() -> u64 {
+    10000 // default in librdkafka
+}
+
+fn default_socket_timeout_ms() -> u64 {
+    60000 // default in librdkafka
+}
+
+fn default_fetch_wait_max_ms() -> u64 {
+    100 // default in librdkafka
+}
+
+fn default_commit_interval_ms() -> u64 {
+    5000 // default in librdkafka
+}
+
+fn default_auto_offset_reset() -> String {
+    "largest".into() // default in librdkafka
+}
+
+
+#[typetag::serde(name = "kafka")]
+impl SourceConfig for KafkaSourceConfig {
+
+    fn build(&self, tx: SyncSender<Vec<u8>>) -> Box<dyn Source> {
+        Box::new(KafkaSource::new(self, tx)) as Box<dyn Source>
     }
 
-    let sql_keys = colums.join(",");
-    let sql_values = values.join(",").replace("\"", "'");
+    fn source_type(&self) -> &'static str{"kafka"}
+}
 
-    let sql = format!("INSERT INTO users ({}) VALUES ({});", sql_keys, sql_values);
+pub struct KafkaSource {
+    config: KafkaConfig,
+}
 
-    Ok(sql)
+impl KafkaSource {
+    pub fn new(config: &KafkaSourceConfig, tx: Sender<Vec<u8>>) -> Self {
+
+    }
 }

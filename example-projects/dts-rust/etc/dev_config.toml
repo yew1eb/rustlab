@@ -1,0 +1,13 @@
+
+[log]
+level = "debug"
+
+[source]
+type = "kafka"
+bootstrap_servers = "gzcloud.kafka4metric.huya.com:9092"
+topics = ["metric_self_union", "udb_client_log_metrics"]
+group_id = "dts_rust"
+
+[sink]
+type = "console"
+encoding = "text"
