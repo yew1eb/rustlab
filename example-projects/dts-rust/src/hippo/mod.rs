@@ -6,6 +6,15 @@ use self::config::Config;
 
 use std::sync::mpsc;
 
+#[allow(dead_code)]
+pub struct Hippo {
+    //inputs
+    //outputs
+    //tasks
+    //config
+
+}
+
 pub fn start(config: &Config) {
     
     //build sources
@@ -14,6 +23,9 @@ pub fn start(config: &Config) {
 
     let source = config.source.build(tx);
 
+    let sink = config.sink.build(rx);
+
+    sink.start()
 }
 
 

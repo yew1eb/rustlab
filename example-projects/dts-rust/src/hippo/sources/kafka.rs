@@ -14,7 +14,10 @@ use structopt::StructOpt;
 use serde::{Deserialize, Serialize};
 
 
-use crate::config::Config;
+use crate::hippo::config::Config;
+use crate::hippo::config::SourceConfig;
+use crate::hippo::sources::Source;
+
 use std::sync::mpsc::SyncSender;
 pub async fn receive_messages(config: &Config) {
 
@@ -124,11 +127,13 @@ impl SourceConfig for KafkaSourceConfig {
 }
 
 pub struct KafkaSource {
-    config: KafkaConfig,
 }
 
+impl Source for KafkaSource {
+}
 impl KafkaSource {
-    pub fn new(config: &KafkaSourceConfig, tx: Sender<Vec<u8>>) -> Self {
-
+    pub fn new(kafkaConfig: &KafkaSourceConfig, tx: SyncSender<Vec<u8>>) -> Self {
+    
+        KafkaSource{}
     }
 }

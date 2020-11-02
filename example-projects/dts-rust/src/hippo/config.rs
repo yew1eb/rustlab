@@ -30,22 +30,3 @@ pub trait SinkConfig: core::fmt::Debug  {
 }
 
 
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
-pub struct ClickhouseConfig {
-
-}
-
-#[typetag::serde(name = "clickhouse")]
-impl SinkConfig for ClickhouseConfig {
-    fn sink_type(&self) -> &'static str{"clickhouse"}
-}
-
-
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
-pub struct ConsoleSinkConfig {
-
-}
-#[typetag::serde(name = "console")]
-impl SinkConfig for ConsoleSinkConfig {
-    fn sink_type(&self) -> &'static str{"console"}
-}
