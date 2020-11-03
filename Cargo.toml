@@ -11,6 +11,8 @@ license-file = "LICENSE"
 [workspace]
 members = [
   "basic-exercises",
+  "example-projects/apiserver",
+  "example-projects/hippo",
 ]
 
 [dependencies]
