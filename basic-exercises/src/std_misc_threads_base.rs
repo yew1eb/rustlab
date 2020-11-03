@@ -5,7 +5,7 @@ static NTHREADS: i32 = 10;
 #[cfg(test)]
 mod test {
     use super::*;
-    
+
     #[test]
     // 这是主（`main`）线程
     fn tmain() {

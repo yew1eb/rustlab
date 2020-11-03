@@ -50,13 +50,11 @@ mod test {
         println!("Hello, world!");
     }
 
-
     #[test]
     fn tmainx() {
         let empty = Empty;
         let null = Null;
 
         empty.double_drop(null);
-        
     }
 }

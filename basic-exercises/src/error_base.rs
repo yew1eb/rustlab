@@ -71,9 +71,11 @@ mod test {
     }
 
     #[test]
-    #[should_panic]   // or  #[should_panic(expected = "AAAaaaaa!!!!")]
+    #[should_panic] // or  #[should_panic(expected = "AAAaaaaa!!!!")]
     fn t_panic() {
         let gift = "snake";
-        if gift == "snake" { panic!("AAAaaaaa!!!!"); }
+        if gift == "snake" {
+            panic!("AAAaaaaa!!!!");
+        }
     }
 }

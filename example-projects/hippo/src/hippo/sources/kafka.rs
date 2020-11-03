@@ -1,32 +1,31 @@
-use std::time::Instant; // timer
-use std::str;
 use std::env;
+use std::str;
+use std::time::Instant; // timer
 
-use rand::distributions::Alphanumeric;
-use rand::Rng;
 use anyhow::Context;
 use dotenv::dotenv;
+use rand::distributions::Alphanumeric;
+use rand::Rng;
 
 use kafka::consumer::{Consumer, FetchOffset, GroupOffsetStorage};
-use sqlx::postgres::PgPool;
-use serde_json::{Value};
-use structopt::StructOpt;
 use serde::{Deserialize, Serialize};
-
+use serde_json::Value;
+use sqlx::postgres::PgPool;
+use structopt::StructOpt;
 
 use crate::hippo::config::Config;
 use crate::hippo::config::SourceConfig;
 use crate::hippo::sources::Source;
 
 use std::sync::mpsc::SyncSender;
-pub async fn receive_messages(config: &Config) {
 
+pub async fn receive_messages(config: &Config) {
     println!("kafka receive_messages");
 
     /*
     let kafka_ip = &env::var("KAFKA_IP").context("`KAFKA_IP` must be set to run this consumer")?;
     let kafka_topic = &env::var("KAFKA_TOPIC").context("`KAFKA_TOPIC` must be set to run this consumer")?;
-    
+
 
 
     // 消费者群组如果没有环境变量则随机生成
@@ -59,10 +58,10 @@ pub async fn receive_messages(config: &Config) {
                 for m in ms.messages() {
                     let start = Instant::now();
                     let json_data = str::from_utf8(&m.value).expect("transfer failed");
-    
+
                     let sql_string = generate_sql(json_data.to_string()).await?;
                     println!("{}", sql_string);
-    
+
                     let _inc = save_data(&pool, sql_string).await?;
                     println!("time cost: {:?} ms", start.elapsed().as_millis());// ms
                 }
@@ -75,7 +74,6 @@ pub async fn receive_messages(config: &Config) {
         }
             */
 }
-
 
 #[derive(Clone, Debug, Default, Deserialize, Serialize)]
 pub struct KafkaSourceConfig {
@@ -115,25 +113,26 @@ fn default_auto_offset_reset() -> String {
     "largest".into() // default in librdkafka
 }
 
-
 #[typetag::serde(name = "kafka")]
 impl SourceConfig for KafkaSourceConfig {
-
     fn build(&self, tx: SyncSender<Vec<u8>>) -> Box<dyn Source> {
         Box::new(KafkaSource::new(self, tx)) as Box<dyn Source>
     }
 
-    fn source_type(&self) -> &'static str{"kafka"}
+    fn source_type(&self) -> &'static str {
+        "kafka"
+    }
 }
 
-pub struct KafkaSource {
-}
+pub struct KafkaSource {}
 
 impl Source for KafkaSource {
+    fn start(&self) {
+        //TODO
+    }
 }
 impl KafkaSource {
     pub fn new(kafkaConfig: &KafkaSourceConfig, tx: SyncSender<Vec<u8>>) -> Self {
-    
-        KafkaSource{}
+        KafkaSource {}
     }
 }

@@ -39,19 +39,23 @@ macro_rules! print_result {
 macro_rules! test {
     // 参数不需要使用逗号隔开。
     // 可以使用任意模板（原文：Any template can be used!）！
-    ($left:expr; and $right:expr) => (
-        println!("{:?} and {:?} is {:?}",
-                 stringify!($left),
-                 stringify!($right),
-                 $left && $right)
-    );
+    ($left:expr; and $right:expr) => {
+        println!(
+            "{:?} and {:?} is {:?}",
+            stringify!($left),
+            stringify!($right),
+            $left && $right
+        )
+    };
     // ^ 每个分支都必须以分号结束。
-    ($left:expr; or $right:expr) => (
-        println!("{:?} or {:?} is {:?}",
-                 stringify!($left),
-                 stringify!($right),
-                 $left || $right)
-    );
+    ($left:expr; or $right:expr) => {
+        println!(
+            "{:?} or {:?} is {:?}",
+            stringify!($left),
+            stringify!($right),
+            $left || $right
+        )
+    };
 }
 
 // `min!` 将求出任意数量的参数的最小值。
@@ -60,7 +64,7 @@ macro_rules! find_min {
     ($x:expr) => ($x);
     // `$x` 后面跟着至少一个 `$y,`
     ($x:expr, $($y:expr),+) => (
-        // 对尾部的 `$y` 调用 `find_min!` 
+        // 对尾部的 `$y` 调用 `find_min!`
         std::cmp::min($x, find_min!($($y),+))
     )
 }
@@ -89,7 +93,6 @@ mod test {
         });
     }
 
-
     #[test]
     fn overload() {
         test!(1i32 + 1 == 2i32; and 2i32 * 2 == 4i32);
@@ -100,7 +103,7 @@ mod test {
     fn repeat() {
         //宏在参数列表中可以使用 + 来表示一个参数可能出现一次或多次，使用 * 来表示该参数可能出现零次或多次。
         println!("{}", find_min!(1u32));
-        println!("{}", find_min!(1u32 + 2 , 2u32));
+        println!("{}", find_min!(1u32 + 2, 2u32));
         println!("{}", find_min!(5u32, 2u32 * 3, 4u32));
     }
 }

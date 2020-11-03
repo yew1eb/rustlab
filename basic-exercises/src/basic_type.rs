@@ -1,5 +1,3 @@
-
-
 fn mt() {
     println!("Hello, world!");
 
@@ -13,16 +11,13 @@ fn mt() {
     };
 
     match y {
-        1 => {
-            println!("one")
-        }
+        1 => println!("one"),
         2 => println!("two"),
         3 => println!("three"),
         4 => println!("four"),
         5 => println!("five"),
         _ => println!("something else"),
     }
-
 
     let x = 5;
     if let y = 5 {
@@ -36,7 +31,6 @@ fn mt() {
     for (i, j) in (5..10).enumerate() {
         println!("i = {} and j = {}", i, j);
     }
-
 
     let mut x = 5;
     let mut done = false;
@@ -52,11 +46,12 @@ fn mt() {
     }
 
     for x in 0..10 {
-        if x % 2 == 0 { continue; }
+        if x % 2 == 0 {
+            continue;
+        }
 
         println!("x = {}", x);
     }
-
 
     let mut x = 5;
     //rust 在声明变量时，在变量前面加入 mut 关键字，变量就会成为可变绑定的变量。
@@ -66,29 +61,33 @@ fn mt() {
 
         println!("x = {}", x);
 
-        if x % 5 == 0 { break; }
+        if x % 5 == 0 {
+            break;
+        }
     }
 
     'outer: for x in 0..10 {
         'inner: for y in 0..10 {
-            if x % 2 == 0 { continue 'outer; }
-            if y % 2 == 0 { continue 'inner; }
+            if x % 2 == 0 {
+                continue 'outer;
+            }
+            if y % 2 == 0 {
+                continue 'inner;
+            }
             println!("x : {}, y : {}", x, y);
         }
     }
 
-
     let mut a: f64 = 1.0;
     let b = 2.0f32;
-//改变 a 的绑定
+    //改变 a 的绑定
     a = 2.0;
     println!("{:?}", a);
-//重新绑定为不可变
+    //重新绑定为不可变
     let a = a; //不能赋值
-//a = 3.0;
-//类型不匹配
-//assert_eq!(a, b);
-
+               //a = 3.0;
+               //类型不匹配
+               //assert_eq!(a, b);
 
     //Rust 的数组是被表示为[T;N]。其中 N 表示数组大小，并且这个大小一定是个 编译时就能获得的整数值，T 表示泛型类型，即任意类型。
     //和 Golang 一样，Rust 的数组中的 N(大小)也是类型的一部分，即[u8; 3] != [u8; 4]。
@@ -105,7 +104,6 @@ fn mt() {
     let slice_right = &arr[1..]; // 最后获得的元素为[2, 3, 4, 5, 6]，长度为 5。
     let slice_left = &arr[..3]; // 最后获得的元素为[1, 2, 3]，长度为 3。
 
-
     //动态Vec
     let mut v1: Vec<i32> = vec![1, 2, 3]; // 通过 vec!宏来声明
     let v2 = vec![0; 10]; // 声明一个初始长度为 10 的值全为 0 的动态数组
@@ -121,10 +119,11 @@ fn mt() {
     println!("");
 
     //函数类型
-    fn foo(x: i32) -> i32 { x + 1 }
+    fn foo(x: i32) -> i32 {
+        x + 1
+    }
     let x: fn(i32) -> i32 = foo;
     assert_eq!(11, x(10));
-
 
     //枚举类型
     struct Student {
@@ -191,12 +190,10 @@ fn use_str(s: &str) {
 
 //该行以分号结尾（;），这代表一个表达式的结束和下一个表达式的开始。大部分 Rust 代码行以分号结尾。
 
-
 // 单行注释，注释内容直到行尾。
 /* 块注释， 注释内容一直到结束分隔符。 */
 
 //Rust 是一种 预编译静态类型（ahead-of-time compiled）语言，这意味着你可以编译程序，并将可执行文件送给其他人，他们甚至不需要安装 Rust 就可以运行。
-
 
 fn test_str_opss() {
     //需要注意的主要就是:String 类型底层实现是 vec<u8>,unicode 类型，并且拿着引用 可以改变 String 内容。有点类似中在 go 做一个特殊的 String 类型，并且内部包着一个
@@ -214,17 +211,17 @@ fn test_str_opss() {
         str3.push_str(" test3 ");
         str3.push('3');
         println!("{:?}", str1);
-// compile error
-// error[E0502]: cannot borrow `str1` as immutable because it is also borrowed as mutable
-// -->src/main.rs:14:25 // |
-//11 | // | //... //14 | // | //...
+        // compile error
+        // error[E0502]: cannot borrow `str1` as immutable because it is also borrowed as mutable
+        // -->src/main.rs:14:25 // |
+        //11 | // | //... //14 | // | //...
         //   let mut str3 = &mut str1;
         //  --------- mutable borrow occurs here
         //  println!("{:?}",str1);
         // ^^^^ immutable borrow occurs here
-//17 | println!("{:?}",str3);
-// |
-// println!("{:?}",str3);
+        //17 | println!("{:?}",str3);
+        // |
+        // println!("{:?}",str3);
         //       ---- mutable borrow later used here
     }
     {
@@ -235,36 +232,36 @@ fn test_str_opss() {
         println!("{:?}", v2);
         let mut v3 = &mut v1;
         v3.push(20);
-//compile error
+        //compile error
         println!("{:?}", v1);
-//error[E0502]: cannot borrow `v1` as immutable because it is also borrowed as
+        //error[E0502]: cannot borrow `v1` as immutable because it is also borrowed as
         //   mutable
-// -->src/main.rs:41:25
-// | //37 | // | //... //41 | // |
+        // -->src/main.rs:41:25
+        // | //37 | // | //... //41 | // |
         //  let mut v3 = &mut v1;
         //  ------- mutable borrow occurs here
         //  println!("{:?}",v1);
         // ^^ immutable borrow occurs here
-//42 | println!("{:?}",v3);
-// |
+        //42 | println!("{:?}",v3);
+        // |
         //  println!("{:?}", v3);
     }
     {
         println!("\nexample 3");
         let mut str1 = String::from("hello");
-//error[E0277]: the type `std::string::String` cannot be indexed by `{integer}`
-// -->src/main.rs:59:23
-// |
-//59 | let answer = &str1[0];
-// | ^^^^^^^ `std::string::String` cannot be indexed
+        //error[E0277]: the type `std::string::String` cannot be indexed by `{integer}`
+        // -->src/main.rs:59:23
+        // |
+        //59 | let answer = &str1[0];
+        // | ^^^^^^^ `std::string::String` cannot be indexed
         //   by `{integer}` // |
-// = help: the trait `std::ops::Index<{integer}>` is not implemented for `std::string::String`
-// compile error
+        // = help: the trait `std::ops::Index<{integer}>` is not implemented for `std::string::String`
+        // compile error
         // let answer = &str1[0];
     }
     {
         println!("\nexample 4");
-//how to loop the string
+        //how to loop the string
         for c in "abc".chars() {
             println!("{}", c);
         }
@@ -274,10 +271,10 @@ fn test_str_opss() {
         let mut a = String::from("testa 你好");
         let mut b = &a[0..4];
         println!("{}", b);
-//This will panic
-//thread 'main' panicked at 'byte index 6 is not a char boundary; it is inside '你' (bytes 5..8) of `testa 你好`', src/libcore/str/mod.rs:2027:5
-//let mut c = &a[0..6];
-//println!("{}",c); }
+        //This will panic
+        //thread 'main' panicked at 'byte index 6 is not a char boundary; it is inside '你' (bytes 5..8) of `testa 你好`', src/libcore/str/mod.rs:2027:5
+        //let mut c = &a[0..6];
+        //println!("{}",c); }
         {
             println!("\nexample 6");
             let mut a = String::from("testa 你好");
@@ -291,57 +288,57 @@ fn test_str_opss() {
             println!("{}", b);
             println!("{}", a);
             //compile error
-//error[E0502]: cannot borrow `a` as immutable because it is also borrowed as mutable
-// --> src/main.rs:102:23
-// |
-//99 | letmutb=&muta;
-// | ------ mutable borrow occurs here
+            //error[E0502]: cannot borrow `a` as immutable because it is also borrowed as mutable
+            // --> src/main.rs:102:23
+            // |
+            //99 | letmutb=&muta;
+            // | ------ mutable borrow occurs here
             //...
-//102 |
-// |
-//...
-//106 |
-// |
-//
-//error[E0502]: cannot borrow `a` as immutable because it is also borrowed as
+            //102 |
+            // |
+            //...
+            //106 |
+            // |
+            //
+            //error[E0502]: cannot borrow `a` as immutable because it is also borrowed as
             //         println!("{}",a);
             //         ^ immutable borrow occurs here
             //         println!("{}",b);
             //        - mutable borrow later used here
             //         mutable
-// --> src/main.rs:105:23
-// |
-//99 | letmutb=&muta;
-// | ------ mutable borrow occurs here
-//...
-//105 | println!("{}",a);
-// | ^ immutable borrow occurs here
-//106 | println!("{}",b);
-// | - mutable borrow later used here
-// println!("{}",a);
-// println!("{}",b); }
+            // --> src/main.rs:105:23
+            // |
+            //99 | letmutb=&muta;
+            // | ------ mutable borrow occurs here
+            //...
+            //105 | println!("{}",a);
+            // | ^ immutable borrow occurs here
+            //106 | println!("{}",b);
+            // | - mutable borrow later used here
+            // println!("{}",a);
+            // println!("{}",b); }
             {
                 println!("\nexample 8");
                 let s1 = String::from("Hello, ");
                 let s2 = String::from("world!");
                 let s3 = s1 + &s2; // 注意 s1 被移动了，不能继续使用
-// write bug
-// error[E0369]: binary operation `+` cannot be applied to type `&std::string::String`
-//let s3 = &s1 + &s2; // 注意 s1 被移动了，不能继续使用
+                                   // write bug
+                                   // error[E0369]: binary operation `+` cannot be applied to type `&std::string::String`
+                                   //let s3 = &s1 + &s2; // 注意 s1 被移动了，不能继续使用
                 println!("{}", s3);
-// error[E0382]: borrow of moved value: `s1`
-// --> src/main.rs:141:23
-// |
-//135 | let s1 = String::from("Hello, ");
-// | -- move occurs because `s1` has type `std::string::String`,
+                // error[E0382]: borrow of moved value: `s1`
+                // --> src/main.rs:141:23
+                // |
+                //135 | let s1 = String::from("Hello, ");
+                // | -- move occurs because `s1` has type `std::string::String`,
                 //         which does not implement the `Copy` trait
-//136 | //137 | // | //...
+                //136 | //137 | // | //...
                 //        let s2 = String::from("world!");
                 //        let s3 = s1 + &s2; // 注意 s1 被移动了，不能继续使用
                 //        -- value moved here
-//141 | println!("{}",s1);
-// |            //       ^^ value borrowed here after move
-// compile error
+                //141 | println!("{}",s1);
+                // |            //       ^^ value borrowed here after move
+                // compile error
                 println!("{}", s2);
             }
         }

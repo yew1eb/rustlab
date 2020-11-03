@@ -23,7 +23,7 @@ where
 #[cfg(test)]
 mod test {
     use super::*;
-    
+
     #[test]
     fn tmain() {
         let vec = vec![1, 2, 3];

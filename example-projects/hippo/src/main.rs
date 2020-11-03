@@ -1,7 +1,7 @@
+pub mod hippo;
 #[allow(dead_code)]
 #[warn(unused_imports)]
 mod timer_task;
-pub mod hippo;
 
 use hippo::config::Config;
 
@@ -14,22 +14,16 @@ use std::env;
 use structopt::StructOpt;
 use tokio::runtime::Runtime;
 
+use futures::{
+    pin_mut, select,
+    stream::{self, SelectAll},
+    StreamExt, TryStreamExt,
+};
 use tokio::{
     net::TcpListener,
     signal::unix::{signal, SignalKind},
     time::{delay_for, Duration},
 };
-use futures::{
-    pin_mut,
-    select,
-    stream::{
-        self,
-        SelectAll,
-    },
-    StreamExt,
-    TryStreamExt,
-};
-
 
 #[derive(StructOpt, Debug, Clone)]
 pub struct CliArgs {
@@ -38,23 +32,25 @@ pub struct CliArgs {
     pub cfgurl: String,
 }
 
-
 fn main() {
     // 读取命令行执行参数
     let params = CliArgs::from_args();
     println!("{:#?}", params);
 
     let mut optConfig: Option<Config> = None;
-     if params.cfgurl.contains("toml") {
+    if params.cfgurl.contains("toml") {
         // 从本地读取配置
         let config_string = fs::read_to_string(&params.cfgurl).unwrap();
         optConfig = match toml::from_str::<Config>(&config_string) {
             Ok(cfg) => Some(cfg),
             Err(error) => {
-                println!("ERROR: toml parse the file {}, error: {}", params.cfgurl, error);
+                println!(
+                    "ERROR: toml parse the file {}, error: {}",
+                    params.cfgurl, error
+                );
                 process::abort();
                 None
-              }
+            }
         };
     } else {
         //从远端动态配置更新
@@ -62,7 +58,6 @@ fn main() {
     }
     let mut config = optConfig.unwrap();
     println!("{:#?}", &config);
-
 
     //TODO 配置自定义日志输出 https://rust-cookbook.budshome.com/development_tools/debugging.html
     env::set_var(
@@ -75,13 +70,11 @@ fn main() {
     // This has to be in an async task to have access to the `tokio::spawn` primitive
     // 跟在async fn main 加 #[tokio::main]作用是一样的
     Runtime::new().unwrap().block_on(async {
-
         hippo::start(&config);
 
         //启动定时任务
         tokio::spawn(timer_task::execute());
 
-        
         //优雅退出
         let mut signals = SelectAll::new();
         signals.push(
@@ -105,5 +98,3 @@ fn main() {
 
     println!("Main thread close.");
 }
-
-

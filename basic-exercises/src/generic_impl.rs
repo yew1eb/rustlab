@@ -1,22 +1,22 @@
 struct Val {
-    val: f64
+    val: f64,
 }
 
 struct GenVal<T> {
-    gen_val: T
+    gen_val: T,
 }
 
 impl Val {
-    fn value(&self) -> &f64 { &self.val }
+    fn value(&self) -> &f64 {
+        &self.val
+    }
 }
 
-impl <T> GenVal<T> {
-    fn value(&self) -> &T { &self.gen_val }
+impl<T> GenVal<T> {
+    fn value(&self) -> &T {
+        &self.gen_val
+    }
 }
-
-
-
-
 
 #[cfg(test)]
 mod test {
@@ -24,7 +24,7 @@ mod test {
 
     #[test]
     fn it_works() {
-        let x = Val {val : 3.0 };
+        let x = Val { val: 3.0 };
         let y = GenVal { gen_val: 3i32 };
 
         println!("{}, {}", x.value(), y.value());
@@ -32,7 +32,7 @@ mod test {
         let z = 4;
         assert_eq!(2 + 2, z);
     }
-    
+
     #[test]
     #[should_panic]
     fn failing_test() {
