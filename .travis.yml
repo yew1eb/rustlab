@@ -10,7 +10,7 @@ rust:
 
 
 before_script:
-  - rustup component add rustfmt-preview
+  - rustup component add rustfmt
   - rustup component add clippy
 script:
   - cargo fmt --all -- --check 
