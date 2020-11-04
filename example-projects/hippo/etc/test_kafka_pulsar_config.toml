@@ -1,0 +1,10 @@
+
+[log]
+level = "debug"
+
+[source]
+type = "kafka"
+
+
+[sink]
+type = "pulsar"
