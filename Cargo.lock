@@ -343,28 +343,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bf8dcb5b4bbaa28653b647d8c77bd4ed40183b48882e130c1f1ffb73de069fd7"
 
 [[package]]
-name = "apiserver"
-version = "0.1.0"
-dependencies = [
- "actix",
- "actix-web",
- "chrono",
- "derive_more",
- "diesel",
- "env_logger",
- "failure",
- "lazy_static",
- "log 0.4.11",
- "mysqlclient-sys",
- "r2d2",
- "serde",
- "serde_derive",
- "serde_json",
- "toml",
- "uuid 0.8.1",
-]
-
-[[package]]
 name = "arrayref"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2363,6 +2341,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1255076139a83bb467426e7f8d0134968a8118844faa755985e077cf31850333"
 
 [[package]]
+name = "mylib"
+version = "0.1.0"
+
+[[package]]
+name = "mysql-actix-api"
+version = "0.1.0"
+dependencies = [
+ "actix",
+ "actix-web",
+ "chrono",
+ "derive_more",
+ "diesel",
+ "env_logger",
+ "failure",
+ "lazy_static",
+ "log 0.4.11",
+ "mysqlclient-sys",
+ "r2d2",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "toml",
+ "uuid 0.8.1",
+]
+
+[[package]]
 name = "mysqlclient-sys"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4257,6 +4261,13 @@ checksum = "ab7bb6f14721aa00656086e9335d363c5c8747bae02ebe32ea2c7dece5689b4c"
 dependencies = [
  "pin-project 0.4.27",
  "tracing",
+]
+
+[[package]]
+name = "trpl-webserver"
+version = "0.1.0"
+dependencies = [
+ "mylib",
 ]
 
 [[package]]

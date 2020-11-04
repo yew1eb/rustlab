@@ -1,0 +1,44 @@
+[package]
+name = "mysql-actix-api"
+version = "0.1.0"
+authors = ["zhouhai <yew1eb@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = "0.4.11"
+env_logger = "0.8.1"
+failure = "0.1.8"
+derive_more = "0.99"
+toml = "0.5.7"
+
+uuid = { version = "0.8", features = ["serde", "v4"] }
+
+# Powerful date and time functionality
+chrono = { version = "0.4.19", features = ["serde"] }
+
+# For connecting with the MySQL database
+diesel = { version = "1.4.5", features = ["mysql", "chrono", "r2d2"] }
+r2d2 = "0.8.9"
+
+
+# Lazy static initialization
+lazy_static = "1.4.0"
+
+# Actix Web FrameWork
+actix = "0.10"
+actix-web = "3.1.0"
+
+# Serialization/Deserialization
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+
+mysqlclient-sys = "0.2.4"
+
+#[patch.crates-io]
+# https://rustcc.cn/article?id=c2daff4a-12a4-42a1-bdbd-7a106789589d
+# Try setting MYSQLCLIENT_LIB_DIR to point to the directory where mysqlclient.dll is stored.
+#mysqlclient-sys = { git = "https://github.com/pzmarzly/mysqlclient-sys", rev = "acd1b2b" }
+#mysqlclient-sys = { git = 'https://github.com/sgrif/mysqlclient-sys' }

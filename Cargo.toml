@@ -11,8 +11,10 @@ license-file = "LICENSE"
 [workspace]
 members = [
   "basic-exercises",
-  "example-projects/apiserver",
+  "example-projects/mysql-actix-api",
   "example-projects/hippo",
+  "example-projects/trpl-webserver",
+  #"example-projects/rocksdb-kv-api",
 ]
 
 [dependencies]
