@@ -16,3 +16,8 @@ rust example projects
 study notes for third-party libraries source code
 
 > git submodule update --init --recursive
+
+## My notes
+<!-- replacer_start -->
+
+<!-- replacer_end -->

@@ -1,0 +1,32 @@
+name: Update README.md
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - "README.md"
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          date '+%Y-%m-%d' > notes.list
+          echo '```' >> notes.list
+          tree >> notes.list
+          echo '```' >> notes.list
+
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "notes.list"
+          dst-file-path: "README.md"
+          start-value: "<!-- replacer_start -->"
+          end-value: "<!-- replacer_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true
