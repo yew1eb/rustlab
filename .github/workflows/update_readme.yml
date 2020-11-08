@@ -2,10 +2,9 @@ name: Update README.md
 on:
   push:
     branches: [master]
-    paths-ignore:
-      - "README.md"
     paths:
       - 'notes/**'
+      - '!README.md'
 
 jobs:
   update-readme:
