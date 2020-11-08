@@ -3,8 +3,10 @@ name: Coverage
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    paths:
+      - 'basic-exercises/**'
+      - 'example-projects/**'
+      - 'third-party/**'
 
 jobs:
   build:
@@ -22,9 +24,9 @@ jobs:
         override: true
     
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --all --verbose --workspace
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --all --workspace
     - name: Install Clippy
       run: rustup component add clippy
     - name: Run Clippy
@@ -45,4 +47,4 @@ jobs:
     - name: Upload to codecov.io
       uses: codecov/codecov-action@v1.0.2
       with:
-        token: ${{secrets.CODECOV_TOKEN}}
+        token: ${{secrets.CODECOV_TOKEN}}  # not required for public repos
