@@ -13,6 +13,7 @@ documentation="https://github.com/awslabs/flowgger/wiki"
 name = "flowgger"
 path = "src/main.rs"
 
+
 [lib]
 name = "flowgger"
 path = "src/lib.rs"
