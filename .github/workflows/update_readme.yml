@@ -17,14 +17,12 @@ jobs:
           echo '```' >> notes.list
           ls -1 *.md >> notes.list
           echo '```' >> notes.list
-          cat notes.list
-          pwd
 
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
-          src-file-path: "notes.list"
-          dst-file-path: "../README.md"
+          src-file-path: "notes/notes.list"
+          dst-file-path: "README.md"
           start-value: "<!-- replacer_start -->"
           end-value: "<!-- replacer_end -->"
           git-user-name: "yew1eb"
