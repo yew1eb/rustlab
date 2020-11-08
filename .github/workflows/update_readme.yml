@@ -13,9 +13,9 @@ jobs:
       - name: Prepare source file
         run: |
           cd notes
-          date '+%Y-%m-%d' > notes.list
+          echo 'notes/' > notes.list
           echo '```' >> notes.list
-          ls -1 *.md >> notes.list
+          find  *.md | xargs -i  sh -c 'echo -n `date +%FT%T -r {}`; echo -n "    "; echo -n `wc -l {} | sed "s/ \+/ lines /g" `; echo ' >> notes.list
           echo '```' >> notes.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
