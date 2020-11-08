@@ -15,7 +15,7 @@ jobs:
           cd notes
           echo 'notes/' > notes.list
           echo '```' >> notes.list
-          find  *.md | xargs -i  sh -c 'echo -n `date +%FT%T -r {}`; echo -n "    "; echo -n `wc -l {} | sed "s/ \+/ lines /g" `; echo ' >> notes.list
+          find  *.md | xargs -i  sh -c 'echo -n `date +%FT%T -r {}`; echo -n "    "; echo -n `wc -l {} | sed "s/ \+/ lines /g"`; echo -n "  "`awk "/./{print;exit}" {}`; echo ' >> notes.list
           echo '```' >> notes.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
