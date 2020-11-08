@@ -1,6 +1,7 @@
 name: Coverage
 
-exclude-files: third-party
+env:
+  exclude-files: third-party
 
 on:
   push:
@@ -25,9 +26,9 @@ jobs:
         override: true
     
     - name: Build
-      run: cargo build --all --verbose --workspace --exclude ${exclude-files}
+      run: cargo build --all --verbose --workspace --exclude ${env.exclude-files}
     - name: Run tests
-      run: cargo test --all --workspace  --exclude ${exclude-files}
+      run: cargo test --all --workspace  --exclude ${env.exclude-files}
     - name: Install Clippy
       run: rustup component add clippy
     - name: Run Clippy
@@ -44,7 +45,7 @@ jobs:
         version: latest
         use-tool-cache: true
     - name: Run cargo-tarpaulin
-      run: cargo tarpaulin --all-features --workspace  --exclude ${exclude-files} --timeout 1200 --out Xml
+      run: cargo tarpaulin --all-features --workspace  --exclude ${env.exclude-files} --timeout 1200 --out Xml
     - name: Upload to codecov.io
       uses: codecov/codecov-action@v1.0.2
       with:
