@@ -12,11 +12,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Prepare source file
         run: |
-          echo "<div>$(whoami)</div>" > test_results.log
+          cd notes
+          echo "<div>$(whoami)</div>" > notes.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
-          src-file-path: "test_results.log"
+          src-file-path: "notes/notes.list"
           dst-file-path: "README.md"
           start-value: "<!-- replacer_start -->"
           end-value: "<!-- replacer_end -->"
