@@ -20,5 +20,7 @@ study notes for third-party libraries source code
 ## My notes
 
 <!-- replacer_start -->
-...
+
+<div>User name will appear here instead</div>
+
 <!-- replacer_end -->
