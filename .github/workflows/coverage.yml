@@ -9,31 +9,24 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
     - name: Install stable toolchain
       uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
         override: true
-    
+        components: rustfmt, clippy
+    - name: Run fmt check
+      run: cargo fmt -- --check
     - name: Build
-      run: cargo build --workspace --exclude third-party
+      run: cargo build --all-features --workspace --exclude third-party
     - name: Run tests
-      run: cargo test --workspace  --exclude third-party
-    - name: Install Clippy
-      run: rustup component add clippy
+      run: cargo test --all-features --workspace  --exclude third-party
     - name: Run Clippy
       run: cargo clippy --all-targets --all-features -- -D warnings -D clippy::pedantic 
-    - name: Install cargo-audit
-      run: cargo install cargo-audit
-    - name: Run cargo-audit
-      run: cargo audit
     
     - name: Install cargo-tarpaulin
       uses: actions-rs/install@v0.1
@@ -44,6 +37,6 @@ jobs:
     - name: Run cargo-tarpaulin
       run: cargo tarpaulin --all-features --workspace  --exclude-files third-party/* --timeout 1200 --out Xml
     - name: Upload to codecov.io
-      uses: codecov/codecov-action@v1.0.2
+      uses: codecov/codecov-action@v1
       with:
         token: ${{secrets.CODECOV_TOKEN}}  # not required for public repos
