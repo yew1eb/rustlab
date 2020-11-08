@@ -12,7 +12,6 @@ pub struct Config {
     pub sink: Box<dyn SinkConfig>,
 }
 
-
 #[derive(Debug, Deserialize, Serialize)]
 pub struct GlobalOptions {
     pub log: LogConfig,
