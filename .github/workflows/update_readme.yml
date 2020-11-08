@@ -13,7 +13,7 @@ jobs:
       - name: Prepare source file
         run: |
           cd notes
-          echo "<div>$(whoami)</div>" > notes.list
+          echo "<div>xxxxxx</div>" > notes.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
