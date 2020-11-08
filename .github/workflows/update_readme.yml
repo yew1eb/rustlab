@@ -13,9 +13,10 @@ jobs:
       - name: Prepare source file
         run: |
           cd notes
-          echo "dasfd" > notes.list
-          echo "dasfdx" > notes.list
-          echo "dasfdxwq" > notes.list
+          date '+%Y-%m-%d' > notes.list
+          echo '```' >> notes.list
+          ls -1 *.md >> notes.list
+          echo '```' >> notes.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
