@@ -25,7 +25,22 @@ study notes for third-party libraries source code
 
 <!-- 3rd-party_block_start -->
 
-<div>User name will appear here instead</div>
+third-party/
+```
+TheAlgorithms-Rust/
+commitlog/
+crossbeam/
+dream/
+flowgger/
+flume/
+kafka-rust/
+pingcap-talent-plan/
+pulsar-rs/
+rain/
+smol/
+toydb/
+vector/
+```
 
 <!-- 3rd-party_block_end -->
 
