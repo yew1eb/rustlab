@@ -11,4 +11,11 @@ contrib
 cobertura.xml
 
 
+third-party/lettre/
+third-party/minilsm/
+third-party/open-data-structures/
+third-party/sonnerie/
+third-party/tsdb/
+third-party/voik/
+third-party/wickdb/
 

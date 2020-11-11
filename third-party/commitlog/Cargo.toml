@@ -1,0 +1,45 @@
+[package]
+authors = ["Zack Owens <zowens2009@gmail.com>"]
+homepage = "https://github.com/zowens/commitlog"
+license = "MIT"
+name = "commitlog"
+readme = "README.md"
+repository = "https://github.com/zowens/commitlog"
+version = "0.1.2"
+edition = "2018"
+
+[features]
+# Enable benchmark of the private api. This flag should be used only
+# for benchmarking purposes!
+internals = []
+
+[dependencies]
+byteorder = "1.0"
+bytes = "0.5.0"
+crc32c = "0.5"
+log = "0.4.1"
+memmap = "0.7"
+page_size = "0.4.1"
+
+[dev-dependencies]
+criterion = "0.3"
+env_logger = "0.7"
+rand = "0.7"
+
+[[bench]]
+name = "index"
+harness = false
+required-features = ["internals"]
+
+[[bench]]
+name = "log-append"
+harness = false
+
+[[bench]]
+name = "message"
+harness = false
+
+[[bench]]
+name = "segment"
+harness = false
+required-features = ["internals"]

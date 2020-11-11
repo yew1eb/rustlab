@@ -19,3 +19,8 @@
 [submodule "third-party/smol"]
 	path = third-party/smol
 	url = git@github.com:yew1eb/smol.git
+
+[submodule "third-party/flume"]
+	path = third-party/flume
+	url = git@github.com:zesterer/flume.git
+
