@@ -23,3 +23,6 @@
 [submodule "third-party/flume"]
 	path = third-party/flume
 	url = git@github.com:zesterer/flume.git
+[submodule "third-party/influxdb_iox"]
+	path = third-party/influxdb_iox
+	url = git@github.com:yew1eb/influxdb_iox.git
