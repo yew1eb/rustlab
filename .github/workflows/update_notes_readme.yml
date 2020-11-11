@@ -1,0 +1,34 @@
+name: Update section My-notes of README.md
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'notes/**'
+
+jobs:
+  update-notes-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          cd notes
+          echo 'notes/' > notes.list
+          echo '```' >> notes.list
+          find  *.md | xargs -i  sh -c 'echo -n `date +%FT%T -r {}`; echo -n "    "; echo -n `wc -l {} | sed "s/ \+/ lines /g"`; echo -n "  "`awk "/./{print;exit}" {}`; echo ' >> notes.list
+          echo '```' >> notes.list
+          cat notes.list
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "notes/notes.list" 
+          dst-file-path: "README.md"
+          start-value: "<!-- notes_block_start -->"
+          end-value: "<!-- notes_block_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true
+

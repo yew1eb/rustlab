@@ -1,0 +1,34 @@
+name: Update section example-projects of README.md
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'example-projects/**'
+
+
+jobs:
+  update-example-projects-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          cd example-projects
+          echo 'example-projects/' > example-projects.list
+          echo '```' >> example-projects.list
+          ls -d1 */ >> example-projects.list
+          echo '```' >> example-projects.list
+          cat example-projects.list
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "example-projects/example-projects.list" 
+          dst-file-path: "README.md"
+          start-value: "<!-- example-projects_block_start -->"
+          end-value: "<!-- example-projects_block_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true

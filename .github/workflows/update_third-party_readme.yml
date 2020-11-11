@@ -1,0 +1,34 @@
+name: Update section third-party of README.md
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'third-party/**'
+
+jobs:
+  update-third-party-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          cd third-party
+          echo 'third-party/' > third-party.list
+          echo '```' >> third-party.list
+          ls -d1 */ >> third-party.list
+          echo '```' >> third-party.list
+          cat third-party.list
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "third-party/third-party.list" 
+          dst-file-path: "README.md"
+          start-value: "<!-- 3rd-party_block_start -->"
+          end-value: "<!-- 3rd-party_block_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true
+
