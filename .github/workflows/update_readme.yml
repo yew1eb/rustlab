@@ -5,7 +5,7 @@ on:
     paths:
       - 'notes/**'
       - 'third-party/**'
-      - '.github/update_readme.yml'
+      - '.github/**'
 
 jobs:
   update-notes-readme:
