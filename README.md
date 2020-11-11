@@ -15,7 +15,13 @@ rust basic code and exercises
 rust example projects   
 <!-- example-projects_block_start -->
 
-<div>User name will appear here instead</div>
+example-projects/
+```
+hippo/
+mysql-actix-api/
+rocksdb-kv-api/
+trpl-webserver/
+```
 
 <!-- example-projects_block_end -->
 
