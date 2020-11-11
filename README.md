@@ -13,6 +13,8 @@ rust basic code and exercises
 rust example projects   
 <!-- example-projects_block_start -->
 
+<div>User name will appear here instead</div>
+
 <!-- example-projects_block_end -->
 
 
@@ -22,6 +24,8 @@ study notes for third-party libraries source code
 > git submodule update --init --recursive  
 
 <!-- 3rd-party_block_start -->
+
+<div>User name will appear here instead</div>
 
 <!-- 3rd-party_block_end -->
 
