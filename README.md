@@ -7,24 +7,31 @@
 
 
 ## Basic exercises
-rust basic code and exercises
+rust basic code and exercises    
 
 ## Example projects
-rust example projects
+rust example projects   
+<!-- example-projects_block_start -->
+
+<!-- example-projects_block_end -->
 
 
 ## Third party
-study notes for third-party libraries source code
+study notes for third-party libraries source code  
 
-> git submodule update --init --recursive
+> git submodule update --init --recursive  
+
+<!-- 3rd-party_block_start -->
+
+<!-- 3rd-party_block_end -->
 
 ## My notes
 
-<!-- replacer_start -->
+<!-- notes_block_start -->
 
 notes/
 ```
 2020-11-08T07:06:47    0 lines 1.md  # 1
 2020-11-08T07:06:47    4 lines 2.md  # 2
 ```
-<!-- replacer_end -->
+<!-- notes_block_end -->

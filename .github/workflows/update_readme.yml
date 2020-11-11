@@ -4,9 +4,10 @@ on:
     branches: [master]
     paths:
       - 'notes/**'
+      - 'third-party/**'
 
 jobs:
-  update-readme:
+  update-notes-readme:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +23,58 @@ jobs:
         with:
           src-file-path: "notes/notes.list" 
           dst-file-path: "README.md"
-          start-value: "<!-- replacer_start -->"
-          end-value: "<!-- replacer_end -->"
+          start-value: "<!-- notes_block_start -->"
+          end-value: "<!-- notes_block_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true
+
+  update-3rd-party-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          cd third-party
+          echo 'third-party/' > third-party.list
+          echo '```' >> third-party.list
+          ls -d1 */ >> third-party.list
+          echo '```' >> third-party.list
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "third-party/third-party.list" 
+          dst-file-path: "README.md"
+          start-value: "<!-- 3rd-party_block_start -->"
+          end-value: "<!-- 3rd-party_block_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true
+
+  update-example-projects-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          cd example-projects
+          echo 'example-projects/' > example-projects.list
+          echo '```' >> example-projects.list
+          ls -d1 */ >> example-projects.list
+          echo '```' >> example-projects.list
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "example-projects/example-projects.list" 
+          dst-file-path: "README.md"
+          start-value: "<!-- example-projects_block_start -->"
+          end-value: "<!-- example-projects_block_end -->"
           git-user-name: "yew1eb"
           git-user-email: "yew1eb@gmail.com"
           git-commit-msg: "Updated by GitHub Actions"
