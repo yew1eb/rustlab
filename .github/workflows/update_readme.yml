@@ -5,6 +5,7 @@ on:
     paths:
       - 'notes/**'
       - 'third-party/**'
+      - '.github/update_readme.yml'
 
 jobs:
   update-notes-readme:
@@ -18,6 +19,7 @@ jobs:
           echo '```' >> notes.list
           find  *.md | xargs -i  sh -c 'echo -n `date +%FT%T -r {}`; echo -n "    "; echo -n `wc -l {} | sed "s/ \+/ lines /g"`; echo -n "  "`awk "/./{print;exit}" {}`; echo ' >> notes.list
           echo '```' >> notes.list
+          cat notes.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
@@ -43,6 +45,7 @@ jobs:
           echo '```' >> third-party.list
           ls -d1 */ >> third-party.list
           echo '```' >> third-party.list
+          cat third-party.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
@@ -68,6 +71,7 @@ jobs:
           echo '```' >> example-projects.list
           ls -d1 */ >> example-projects.list
           echo '```' >> example-projects.list
+          cat example-projects.list
       - uses: unfor19/replacer-action@v1.0.2
         name: Update README.md file
         with:
