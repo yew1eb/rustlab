@@ -19,5 +19,3 @@
 [submodule "third-party/smol"]
 	path = third-party/smol
 	url = git@github.com:yew1eb/smol.git
-
-
