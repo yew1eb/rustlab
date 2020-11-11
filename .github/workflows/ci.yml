@@ -1,4 +1,5 @@
-name: Coverage
+name: CI
+# Continuous Integration
 
 on:
   push:
