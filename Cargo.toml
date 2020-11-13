@@ -13,8 +13,8 @@ members = [
   "basic-exercises",
   "example-projects/hippo",
   "example-projects/trpl-webserver",
-  #"example-projects/mysql-actix-api",
-  #"example-projects/rocksdb-kv-api",
+  "example-projects/mysql-actix-api",
+  "example-projects/rocksdb-kv-api",
 ]
 
 [dependencies]
