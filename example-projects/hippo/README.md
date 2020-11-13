@@ -1,32 +1,19 @@
+# Hippo
 
-https://github.com/timberio/vector
-
-https://github.com/google/data-transfer-project
-https://github.com/childe/gohangout
-
-# DTS-RUST
-
-## 用来干啥？
+Hippo is a fast, simple and lightweight data transfer framework written in rust.
 
 
-## 架构
+## architecture
 ```
-                        /--> output: channel
-                       /
-input: channel --> exchanger ---> output: channel
-                       \
-                        \--> output: channel
+                             /--> sink: channel
+                            /
+source: channel --> transfer ---> sink: channel
+                            \
+                             \--> sink: channel
 ```
 
-## 详细设计
-
-main驱动类中启动Container来运行所有工作
-### Container
-field config  
-func start {
-    source 
-}
 
 
-
-
+## others
+Distributed Data Transfer Service for MySQL
+git@github.com:actiontech/dtle.git
