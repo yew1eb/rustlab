@@ -1,9 +1,0 @@
-[log]
-level = "debug"
-
-[source]
-type = "stdin"
-
-
-[sink]
-type = "stdout"
