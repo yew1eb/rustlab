@@ -27,9 +27,6 @@
 [submodule "third-party/influxdb_iox"]
 	path = third-party/influxdb_iox
 	url = git@github.com:yew1eb/influxdb_iox.git
-[submodule "third-party/rain"]
-	path = third-party/rain
-	url = git@github.com:substantic/rain.git
 [submodule "third-party/string-interner"]
 	path = third-party/string-interner
 	url = git@github.com:Robbepop/string-interner.git
