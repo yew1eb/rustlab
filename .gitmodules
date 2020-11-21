@@ -42,3 +42,6 @@
 [submodule "third-party/AnomalyDetector"]
 	path = third-party/AnomalyDetector
 	url = git@github.com:joxer/AnomalyDetector.git
+[submodule "third-party/rust-common"]
+	path = third-party/rust-common
+	url = git@github.com:yew1eb/rustcommon.git
