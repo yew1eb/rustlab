@@ -3,6 +3,7 @@
 #![warn(unused_imports)]
 
 mod basic_type;
+mod collection_types;
 mod borrow_base;
 mod borrow_mut_base;
 mod closure_base;
