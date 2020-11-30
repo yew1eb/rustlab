@@ -1,6 +1,5 @@
 #[cfg(test)]
 mod test {
-
     #[test]
     fn t_if() {
         let my_number = 5;
@@ -32,7 +31,7 @@ mod test {
         let married = true;
         match (children, married) {
             (children, married) if married == false => {
-                println!("Not married with () children", children)
+                println!("Not married with {} children", children)
             }
             (children, married) if children == 0 && married == true => {
                 println!("Married but no children")

@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod test {
     #[test]
-    fn struct_fn() {
+    fn t_struct_base() {
         #[derive(Debug)]
         struct User {
             name: String,
@@ -53,7 +53,7 @@ mod test {
     }
 
     #[test]
-    fn struct_with_function() {
+    fn t_struct_with_method() {
         #[derive(Debug)]
         struct Dog {
             name: String,
