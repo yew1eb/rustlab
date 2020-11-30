@@ -7,7 +7,7 @@ enum Message {
 
 impl Message {
     fn prt(&self) {
-        match *self {
+        match self {
             Message::Quit => println!("Quit"),
             Message::Move { x, y } => println!("Move x= {}, y = {}", x, y),
             Message::Change(a, b, c) => println!("Change a = {}, b = {}, c = {}", a, b, c),
@@ -17,6 +17,14 @@ impl Message {
             _ => println!("Write"),
         }
     }
+}
+
+enum Star {
+    BrownDwarf = 10,
+    RedDwarf = 50,
+    YellowStar = 100,
+    RedGiant = 1000,
+    DeadStar,
 }
 
 #[cfg(test)]
@@ -59,13 +67,27 @@ mod test {
 
         let i1 = IpAddr3::V4(127, 0, 0, 1);
         let i2 = IpAddr3::V6(String::from("::1"));
+    }
 
+    #[test]
+    fn t_message_enum() {
         let msg1 = Message::Quit;
         msg1.prt();
 
         let msg2 = Message::Move { x: 10, y: 30 };
         msg2.prt();
+    }
 
-        println!("Hello, world!");
+    #[test]
+    fn t_star_enum() {
+        use Star::*;
+        let starvec = vec![BrownDwarf, RedDwarf, YellowStar, RedGiant];
+        for star in starvec {
+            match star as u32 {
+                size if size <= 80 => println!("Not the biggest star."),
+                size if size >= 80 => println!("This is a good-sized star."),
+                _ => println!("That star is pretty big!"),
+            }
+        }
     }
 }

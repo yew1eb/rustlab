@@ -27,13 +27,13 @@ mod test {
         contacts.insert("Katie", "435-8291");
         contacts.insert("Robert", "956-1745");
 
-        // 接受一个引用并返回 Option<&V>
+        //get: 接受一个引用并返回 Option<&V>
         match contacts.get(&"Daniel") {
             Some(&number) => println!("Calling Daniel: {}", call(number)),
             _ => println!("Don't have Daniel's number."),
         }
 
-        // 如果被插入的值为新内容，那么 `HashMap::insert()` 返回 `None`，
+        //insert: 如果被插入的值为新内容，那么 `HashMap::insert()` 返回 `None`，
         // 否则返回 `Some(value)`
         contacts.insert("Daniel", "164-6743");
 
@@ -42,6 +42,7 @@ mod test {
             _ => println!("Don't have Ashley's number."),
         }
 
+        //remove:
         contacts.remove(&("Ashley"));
 
         // `HashMap::iter()` 返回一个迭代器，该迭代器获得
@@ -85,5 +86,26 @@ mod test {
             *count += 1;
         }
         println!("map = {:?}", map);
+    }
+
+    #[test]
+    fn t_hashmap_entry_or_insert() {
+        //HashMap has a very interesting method called .entry() that you definitely want to try out.
+        //With it you can try to make an entry and use another method like .or_insert() to insert the value if there is no key.
+        let book_collection = vec![
+            "L'Allemagne Moderne",
+            "Le Petit Prince",
+            "Eye of the World",
+            "Eye of the World",
+        ]; // Eye of the World appears twice
+
+        let mut book_hashmap = HashMap::new();
+
+        for book in book_collection {
+            book_hashmap.entry(book).or_insert(true);
+        }
+        for (book, true_or_false) in book_hashmap {
+            println!("Do we have {}? {}", book, true_or_false);
+        }
     }
 }

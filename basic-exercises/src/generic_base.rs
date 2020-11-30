@@ -18,16 +18,6 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     larger
 }
 
-enum Option<T> {
-    Some(T),
-    None,
-}
-
-enum Result<T, E> {
-    Ok(T),
-    Err(E),
-}
-
 //-----------在方法中使用泛型--------------
 #[derive(Debug)]
 struct Point<T> {

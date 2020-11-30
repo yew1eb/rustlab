@@ -8,6 +8,9 @@
 
 ## Basic exercises
 rust basic code and exercises    
+<!-- basic-exercises_block_start -->
+
+<!-- basic-exercises_block_end -->
 
 ## Example projects
 rust example projects   
@@ -15,7 +18,6 @@ rust example projects
 
 example-projects/
 ```
-hippo/
 mysql-actix-api/
 rocksdb-kv-api/
 trpl-webserver/

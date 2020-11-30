@@ -1,5 +1,18 @@
+/**
+enum Option<T> {
+    None,
+    Some(T),
+}
+
+**/
 #[cfg(test)]
 mod test {
+    fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(x) => Some(x + 1),
+        }
+    }
 
     #[test]
     fn tmain() {
@@ -32,12 +45,5 @@ mod test {
         }
 
         println!("Hello, world!");
-    }
-
-    fn plus_one(x: Option<i32>) -> Option<i32> {
-        match x {
-            None => None,
-            Some(x) => Some(x + 1),
-        }
     }
 }

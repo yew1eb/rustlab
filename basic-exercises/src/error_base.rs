@@ -4,24 +4,11 @@
 //什么时候用painc!, 什么时候用Result
 //(1)示例、代码原型、测试用painc!\unwrap\expect ?
 //(2)实际项目中应该用Result
-
 // Option和Result
 
 use std::fs::File;
 use std::io;
 use std::io::Read;
-
-fn fn_erro1() {
-    let f = File::open("hello.txt");
-    //    let r = match f {
-    //        Ok(file) => file,
-    //        Err(error) => panic!("error: {:?}", error),
-    //    };
-
-    //let f = File::open("hello.txt").unwrap();
-
-    let f = File::open("hello.txt").expect("Failed to open hello.txt");
-}
 
 fn fn_error2() {
     let r = read_username_from_file3();
@@ -65,8 +52,6 @@ mod test {
 
     #[test]
     fn tmain() {
-        //fn_error1();
-
         fn_error2();
     }
 

@@ -1,0 +1,33 @@
+name: Update section basic-exercises of README.md
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'basic-exercises/**'
+
+jobs:
+  update-basic-exercises-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare source file
+        run: |
+          cd basic-exercises
+          echo 'basic-exercises/' > basic-exercises.list
+          echo '```' >> basic-exercises.list
+          ls -d1 */ >> basic-exercises.list
+          echo '```' >> basic-exercises.list
+          cat basic-exercises.list
+      - uses: unfor19/replacer-action@v1.0.2
+        name: Update README.md file
+        with:
+          src-file-path: "basic-exercises/basic-exercises.list" 
+          dst-file-path: "README.md"
+          start-value: "<!-- basic-exercises_block_start -->"
+          end-value: "<!-- basic-exercises_block_end -->"
+          git-user-name: "yew1eb"
+          git-user-email: "yew1eb@gmail.com"
+          git-commit-msg: "Updated by GitHub Actions"
+          git-skip-commit: false
+          git-skip-push: false
+          create-backup: true

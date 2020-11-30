@@ -1,3 +1,21 @@
+/**
+Result is similar to Option, but here is the difference:
+
++ Option is about Some or None (value or no value),
++ Result is about Ok or Err (okay result, or error result).
+
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+
+Remember, the four methods to easily check are .is_some(), is_none(), is_ok(), and is_err().
+
+Just like Option, .unwrap() on Err will panic.
+
+
+**/
+
 mod checked {
     // 我们想要捕获的数学“错误”
     #[derive(Debug)]
