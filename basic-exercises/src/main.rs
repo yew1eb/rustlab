@@ -3,10 +3,11 @@
 #![warn(unused_imports)]
 
 mod basic_type;
-mod collection_types;
 mod borrow_base;
 mod borrow_mut_base;
 mod closure_base;
+mod collection_types;
+mod control_flow;
 mod define_error_type;
 mod enum_base;
 mod error_base;
@@ -39,6 +40,4 @@ mod std_misc_threads_base;
 
 mod std_misc_ffi_base;
 
-fn main() {
-    println!("Hello World!")
-}
+fn main() {}
