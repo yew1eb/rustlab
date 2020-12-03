@@ -25,6 +25,13 @@ mod test {
     use super::*;
 
     #[test]
+    fn t_print_all_env_vars() {
+        for item in std::env::vars() {
+            println!("{:?}", item);
+        }
+    }
+
+    #[test]
     fn tmain() {
         for number in 0..5 {
             //let mut args: Vec<String> = env::args().collect();

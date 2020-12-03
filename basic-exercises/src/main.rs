@@ -40,7 +40,27 @@ mod struct_base;
 mod trait_base;
 mod trait_override_add_operator;
 
+mod arc; //TODO
+mod attributes; //TODO
+mod box_around_traits; //TODO
+mod cell;
 mod chaining_methods;
+mod channels; //TODO
+mod closures_in_functions; //TODO
+mod cow; //TODO
+mod deref;
+mod ecrate_chrono; //TODO
+mod ecrate_rand; //TODO
+mod ecrate_rayon; //TODO
+mod ecrate_regex; //TODO
+mod ecrate_serde; //TODO
 mod iterators;
+mod multiple_threads; //TODO
+mod mutex; //TODO
+mod rc; //TODO
+mod rwlock; //TODO
+mod todo_macro; //TODO
+mod trait_default; //TODO
+mod type_aliases; //TODO //TODO
 
 fn main() {}
