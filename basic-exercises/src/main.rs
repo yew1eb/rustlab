@@ -63,4 +63,6 @@ mod todo_macro; //TODO
 mod trait_default; //TODO
 mod type_aliases; //TODO //TODO
 
+// <https://github.com/kumakichi/easy_rust_chs>
+// <https://github.com/Dhghomon/easy_rust>
 fn main() {}
