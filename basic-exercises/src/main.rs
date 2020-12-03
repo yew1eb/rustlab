@@ -40,4 +40,7 @@ mod struct_base;
 mod trait_base;
 mod trait_override_add_operator;
 
+mod chaining_methods;
+mod iterators;
+
 fn main() {}
