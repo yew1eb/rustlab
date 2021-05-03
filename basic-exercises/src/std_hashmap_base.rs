@@ -71,7 +71,7 @@ mod test {
 
         let mut ss1 = HashMap::new();
         ss1.insert(String::from("one"), 1);
-        ss1.insert(String::from("two"), 2);
+        ss1.insert("two".to_string(), 2);
         //key不存在才才插入
         ss1.entry(String::from("one")).or_insert(3);
         println!("ss1 = {:?}", ss1);
@@ -106,6 +106,20 @@ mod test {
         }
         for (book, true_or_false) in book_hashmap {
             println!("Do we have {}? {}", book, true_or_false);
+        }
+    }
+
+    #[test]
+    fn t_contains_key() {
+        let mut book_reviews: HashMap<String, String> = HashMap::new();
+
+        book_reviews.insert(
+            "Adventures of Huckleberry Finn".to_string(),
+            "My favorite book".to_string(),
+        );
+
+        if !book_reviews.contains_key("Les") {
+            println!("We've got {} reviews, but Les't one.", book_reviews.len());
         }
     }
 }

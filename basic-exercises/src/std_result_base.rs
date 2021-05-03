@@ -13,7 +13,8 @@ Remember, the four methods to easily check are .is_some(), is_none(), is_ok(), a
 
 Just like Option, .unwrap() on Err will panic.
 
-
+Rust 提供了用于返回和传播错误的 Result<T, E> 枚举。 按照惯例，Ok(T) 变量表示成功并包含一个值，而变量 Err(E) 表示错误并包含一个错误值。
+与描述缺少某个值的可能性的 Option 类型不同，Result 类型最适合在预期会失败时使用。
 **/
 
 mod checked {

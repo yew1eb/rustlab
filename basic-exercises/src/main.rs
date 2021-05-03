@@ -11,7 +11,6 @@ mod control_flow;
 mod define_error_type;
 mod destructuring_base;
 mod enum_base;
-mod error_base;
 mod fn_base;
 mod generic_base;
 mod generic_bound;
@@ -22,6 +21,7 @@ mod loops;
 mod macros_base;
 mod std_binaryheap_base;
 mod std_box_base;
+mod std_error_base;
 mod std_hashmap_base;
 mod std_hashset_base;
 mod std_misc_channels_base;
@@ -60,7 +60,6 @@ mod mutex; //TODO
 mod rc; //TODO
 mod rwlock; //TODO
 mod todo_macro; //TODO
-mod trait_default; //TODO
 mod type_aliases; //TODO //TODO
 
 // <https://github.com/kumakichi/easy_rust_chs>

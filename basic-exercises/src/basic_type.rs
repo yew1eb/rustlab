@@ -198,6 +198,7 @@ mod test {
 
     //Rust 是一种 预编译静态类型（ahead-of-time compiled）语言，这意味着你可以编译程序，并将可执行文件送给其他人，他们甚至不需要安装 Rust 就可以运行。
 
+    // .to_string() 方法调用的使用。 此方法将字符串字面量 (&str) 值转换为 String
     fn test_str_opss() {
         //需要注意的主要就是:String 类型底层实现是 vec<u8>,unicode 类型，并且拿着引用 可以改变 String 内容。有点类似中在 go 做一个特殊的 String 类型，并且内部包着一个
         //byte数组。

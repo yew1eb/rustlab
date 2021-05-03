@@ -67,4 +67,44 @@ mod test {
         // `failed_borrow` 未包含引用来迫使 `'a` 长于函数的生命周期，
         // 但 `'a` 寿命更长。因为该生命周期从未被约束，所以默认为 `'static`。
     }
+
+    #[test]
+    fn t_lifttime_error() {
+        let magic1 = String::from("abracadabra!");
+        let result = &magic1;
+        {
+            let magic2 = String::from("shazam!");
+            //result = longest_word(&magic1, &magic2);
+            //`magic2` does not live long enough
+            //longest_word 函数返回的引用的生存期与传入的引用的生存期中的较小者相同
+        }
+        println!("The longest magic word is {}", result);
+    }
+
+    fn longest_word<'a>(x: &'a String, y: &'a String) -> &'a String {
+        if x.len() > y.len() {
+            x
+        } else {
+            y
+        }
+    }
+
+    #[test]
+    fn t_struct_lifttime() {
+        #[derive(Debug)]
+        struct Highlight<'document>(&'document str);
+        //我们使用名为 'document 的生存期对我们的结构进行了批注。
+        //此批注是一个提醒，它提醒 Highlight 结构的生存期不能超过它借用的 &str 的源（一个假定的文档）的生存期。
+
+        fn erase(_: String) {}
+
+        let text = String::from("The quick brown fox jumps over the lazy dog.");
+        let fox = Highlight(&text[4..19]);
+        let dog = Highlight(&text[35..43]);
+
+        erase(text);
+
+        //println!("{:?}", fox);
+        //println!("{:?}", dog);
+    }
 }

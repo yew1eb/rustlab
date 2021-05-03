@@ -1,5 +1,4 @@
 use std::mem;
-
 #[derive(Clone, Copy)]
 struct Point {
     x: f64,
