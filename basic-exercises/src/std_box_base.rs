@@ -69,7 +69,7 @@ mod test {
             mem::size_of_val(&box_in_a_box)
         );
 
-        // 将包含在 `boxed_point` 的数据复制到 `unboxed_point`
+        // 将包含在 `boxed_point` 的数据复制到 `unboxed_point` (* 解引用)
         let unboxed_point: Point = *boxed_point;
         println!(
             "Unboxed point occupies {} bytes in the stack",

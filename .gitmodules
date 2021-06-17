@@ -1,7 +1,4 @@
 
-[submodule "third-party/toydb"]
-	path = third-party/toydb
-	url = git@github.com:yew1eb/toydb.git
 	
 [submodule "third-party/pingcap-talent-plan"]
 	path = third-party/pingcap-talent-plan
@@ -24,9 +21,7 @@
 [submodule "third-party/flume"]
 	path = third-party/flume
 	url = git@github.com:zesterer/flume.git
-[submodule "third-party/influxdb_iox"]
-	path = third-party/influxdb_iox
-	url = git@github.com:yew1eb/influxdb_iox.git
+
 [submodule "third-party/string-interner"]
 	path = third-party/string-interner
 	url = git@github.com:Robbepop/string-interner.git
@@ -36,9 +31,7 @@
 [submodule "third-party/rustbreak"]
 	path = third-party/rustbreak
 	url = git@github.com:TheNeikos/rustbreak.git
-[submodule "third-party/toy-tsdb"]
-	path = third-party/toy-tsdb
-	url = git@github.com:dobrakmato/tsdb.git
+
 [submodule "third-party/AnomalyDetector"]
 	path = third-party/AnomalyDetector
 	url = git@github.com:joxer/AnomalyDetector.git
